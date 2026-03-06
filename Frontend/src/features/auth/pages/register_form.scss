@@ -1,0 +1,199 @@
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(ellipse at top, #2b2618 0%, #0a0908 70%);
+}
+
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  background: #1f1f1f;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .logo-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f1c240, #f7b12f);
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f1f1f1;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: #888;
+  }
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.register-page {
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #aaa;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      color: #555;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem 0.75rem 0.7rem 2.5rem;
+      background: #2a2a2a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #f1f1f1;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+
+      &::placeholder {
+        color: #555;
+      }
+
+      &:focus {
+        border-color: #f1c240;
+        box-shadow: 0 0 0 3px rgba(241, 194, 64, 0.15);
+      }
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #555;
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #aaa;
+      }
+    }
+  }
+
+  .btn-submit {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f7c02b, #f0a823);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: #555;
+    font-size: 0.8rem;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #333;
+    }
+  }
+
+  .btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.7rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #ccc;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover {
+      background: #333;
+      border-color: #444;
+    }
+  }
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #888;
+
+  a {
+    color: #f6c05c;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: #f1cb63bd;
+    }
+  }
+}
