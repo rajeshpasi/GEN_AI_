@@ -1,20 +1,36 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import './login_form.scss'
+import { useAuth } from '../hooks/useAuth.js'
 
 const Login = () => {
-  const [form, setForm] = useState({ email: '', password: '' })
   const [showPassword, setShowPassword] = useState(false)
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+  const navigate = useNavigate()
+  const {loading, handleLogin } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: connect to auth API
-    console.log(form)
+    handleLogin({email, password})
+      console.log('Login successful')
+      navigate('/')
   }
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <svg className="loading-spinner" viewBox="0 0 50 50">
+          <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
+        </svg>
+        <p>Logging in...</p>
+      </div>
+    )
+  }
+
+  
+
+
 
   return (
     <main className="login-page">
@@ -44,8 +60,8 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="you@example.com"
-                value={form.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -66,8 +82,8 @@ const Login = () => {
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <button

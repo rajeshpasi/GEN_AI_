@@ -1,20 +1,33 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router'
+import React, { useState, } from 'react'
+import { Link, useNavigate } from 'react-router'
 import './register_form.scss'
+import { useAuth } from '../hooks/useAuth.js'
 
 const Register = () => {
-  const [form, setForm] = useState({ username: '', email: '', password: '', confirmPassword: '' })
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
+  const { loading, handleRegister } = useAuth()
+  const navigate = useNavigate()
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: connect to auth API
-    console.log(form)
+    handleRegister({ username, email, password})
+      console.log('Registration successful')
+      navigate('/') // Redirect to dashboard or home page after successful registration
+  }
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <svg className="loading-spinner" viewBox="0 0 50 50">
+          <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
+        </svg>
+        <p>Logging in...</p>
+      </div>
+    )
   }
 
   return (
@@ -46,8 +59,8 @@ const Register = () => {
                 name="username"
                 type="text"
                 placeholder="John Doe"
-                value={form.username}
-                onChange={handleChange}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>
@@ -65,8 +78,8 @@ const Register = () => {
                 name="email"
                 type="email"
                 placeholder="you@example.com"
-                value={form.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -84,8 +97,8 @@ const Register = () => {
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <button
@@ -95,43 +108,6 @@ const Register = () => {
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
-                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
-                    <line x1="1" y1="1" x2="23" y2="23" />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <div className="input-wrapper">
-              <svg className="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type={showConfirm ? 'text' : 'password'}
-                placeholder="••••••••"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={() => setShowConfirm(!showConfirm)}
-                aria-label={showConfirm ? 'Hide password' : 'Show password'}
-              >
-                {showConfirm ? (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
                     <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
