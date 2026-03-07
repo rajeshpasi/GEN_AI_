@@ -2,6 +2,7 @@ import React, { useState, } from 'react'
 import { Link, useNavigate } from 'react-router'
 import './register_form.scss'
 import { useAuth } from '../hooks/useAuth.js'
+import Loading from '../components/Loading.jsx'
 
 const Register = () => {
   const [username, setUsername] = useState('')
@@ -20,14 +21,7 @@ const Register = () => {
   }
 
   if (loading) {
-    return (
-      <div className="loading-container">
-        <svg className="loading-spinner" viewBox="0 0 50 50">
-          <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
-        </svg>
-        <p>Logging in...</p>
-      </div>
-    )
+    return <Loading message="Creating account..." />
   }
 
   return (
