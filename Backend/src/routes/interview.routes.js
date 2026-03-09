@@ -1,5 +1,7 @@
 const express = require('express');
 const authUser = require('../middlewares/auth.middleware');
+const InterViewController  = require('../controllers/interview.controller');
+const upload = require('../middlewares/file.middleware');
 
 const interviewRouter = express.Router();
 
@@ -10,6 +12,6 @@ const interviewRouter = express.Router();
  * @access Private (authentication required)
  */
 
-interviewRouter.post('/', authUser)
+interviewRouter.post('/', authUser, upload.single('resume'), InterViewController.generateInterViewReportController);
 
 module.exports = interviewRouter;

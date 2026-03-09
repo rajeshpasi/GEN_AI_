@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_URL = axios.create({
-    baseURL: 'http://localhost:8000/api/auth',
+    baseURL: '/api/auth',
     withCredentials: true
 })
 
@@ -26,6 +26,8 @@ export const logout = async () => {
 
 // Get user profile response from the backend, 
 export const getProfile = async () => {
-    const response = await API_URL.get('/get-profile')
+    const response = await API_URL.get('/get-profile', {
+        withCredentials: true
+    })
     return response.data
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import './login_form.scss'
 import { useAuth } from '../hooks/useAuth.js'
@@ -11,12 +11,18 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    handleLogin({email, password})
-      console.log('Login successful')
-      navigate('/')
+  const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  try {
+    await handleLogin({ email, password })
+
+    console.log("Login successful")
+    navigate("/")
+  } catch (error) {
+    console.error("Login failed", error)
   }
+}
 
   if (loading) {
     return <Loading message="Logging in..." />
