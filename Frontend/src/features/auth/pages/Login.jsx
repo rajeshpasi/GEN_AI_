@@ -8,8 +8,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const {loading, handleLogin } = useAuth()
-  const [email, setEmail] = useState('rajeshpasi447@gmail.com')
-  const [password, setPassword] = useState('test123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e) => {
   e.preventDefault()
