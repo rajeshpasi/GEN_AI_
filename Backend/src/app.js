@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'gen-ai-interview-seven.vercel.app', // Update this to match your frontend URL
+  origin: 'https://gen-ai-interview-seven.vercel.app/', // Update this to match your frontend URL
   credentials: true, // Allow cookies to be sent with requests
 }));
 
